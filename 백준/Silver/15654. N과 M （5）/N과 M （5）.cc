@@ -9,18 +9,18 @@ bool isused[10001];
 void func(int k) {
 	if (k == m) {
 		for (int i = 0; i < m; i++)
-			cout << arr[i] << ' ';
+			cout << asc[arr[i]] << ' ';
 		cout << '\n';
 		return;
 	}
 
-	// 수를 입력받으므로 i는 asc 배열의 주소
+	// 수를 입력받으므로 i는 asc 배열의 인덱스
 	for (int i = 0; i < n; i++) {
-		if (!isused[asc[i]]) {
-			arr[k] = asc[i];
-			isused[asc[i]] = 1;
+		if (!isused[i] ) {
+			arr[k] = i;
+			isused[i] = 1;
 			func(k + 1);
-			isused[asc[i]] = 0;
+			isused[i] = 0;
 		}
 	}
 }
