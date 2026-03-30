@@ -1,7 +1,3 @@
 function solution(a, b) {
-    var answer = 0;
-    for(var i in a){
-        answer += a[i] * b[i];
-    }
-    return answer;
+    return a.reduce((acc, _, i) => acc += a[i]*b[i], 0);
 }
