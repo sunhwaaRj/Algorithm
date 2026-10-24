@@ -1,22 +1,22 @@
 function solution(numbers, target) {
-    var answer = 0;
-    
-    // 지금 위치를 idx 로 판단
-    function fn(idx, sum){
-        // 끝까지 돌렸을 때
-        if(idx === numbers.length) {
-            if(sum === target) answer++;
-            return; // 끝까지 가고 fn 탈출
-        }
-        
-        // 더하기 +numbers[idx]
-        fn(idx+1, sum+numbers[idx]);
-        
-        // 빼기 -numbers[idx]
-        fn(idx+1, sum-numbers[idx]);
+  let answer = 0;
+  const stack = [[0, 0]]; // 시작
+
+  while (stack.length) {
+    const [idx, sum] = stack.pop();  // 상태 하나 꺼냄
+
+    if (idx === numbers.length) {
+      // 끝까지 왔을 때 처리
+      if (sum === target) answer++;     
+      continue;
     }
+
+    // 더하는 상태 push
+    stack.push([idx+1, sum+numbers[idx]]);
     
-    // 실행
-    fn(0, 0);
-    return answer;
+    // 빼는 상태 push
+    stack.push([idx+1, sum-numbers[idx]]);
+  }
+
+  return answer;
 }
